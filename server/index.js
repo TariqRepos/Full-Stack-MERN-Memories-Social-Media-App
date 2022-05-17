@@ -3,8 +3,12 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors"; // Cross Origin Resource Sharing (CORS) is a W3C standard that allows a server to relax the same-origin policy
 
+import postRoutes from './routes/posts.js';
+
 // Express setup
 const app = express();
+
+app.use('/posts', postRoutes); // Every route is posts will be prepended with /posts
 
 app.use(bodyParser.json({ limit: "30mb", extended: true})); // Limits size since we have images
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true})); // Limits size since we have images

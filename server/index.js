@@ -8,11 +8,11 @@ import postRoutes from './routes/posts.js';
 // Express setup
 const app = express();
 
-app.use('/posts', postRoutes); // Every route is posts will be prepended with /posts
-
 app.use(bodyParser.json({ limit: "30mb", extended: true})); // Limits size since we have images
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true})); // Limits size since we have images
-app.use(cors());
+app.use(cors()); // Needs to be before routes
+
+app.use('/posts', postRoutes); // Every route is posts will be prepended with /posts
 
 // Mongdb setup
 const DB_USERNAME = "tariqmuhanna";

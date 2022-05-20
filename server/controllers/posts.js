@@ -1,4 +1,5 @@
 // This file will contain all the logic for routes relating to posts
+import mongoose from "mongoose";
 
 import PostMessage from "../models/postMessage.js";
 
@@ -26,4 +27,16 @@ export const createPost = async (req, res) => {
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
+};
+
+export const updatePost = async (req, res) => {
+    const { id } = req.params;
+    const post = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).send("No post with that id: " + id);
+    
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { ...post, id}, { new: true });
+
+    res.json(updatedPost);
 };

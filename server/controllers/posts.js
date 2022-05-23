@@ -18,12 +18,12 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
     const post  = req.body;
 
-    const newPost = new PostMessage(post);
+    const newPostMessage = new PostMessage({...post, creator: req.userId, createdAt: new Date().toISOString()});
 
     try {
-        await newPost.save();
+        await newPostMessage.save();
         
-        res.status(201).json(newPost);
+        res.status(201).json(newPostMessage);
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
@@ -55,11 +55,27 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
     const { id } = req.params;
 
+    // Check if middleware was able to authenticate user
+    if(!req.userId) return res.json({ message: 'Unauthenticated' });
+
     if(!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).send("No post with that id: " + id);
 
+    // Get post from database using the id
     const post = await PostMessage.findById(id);
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+
+    // Each like will have an id associated with it, use this to prevent user from liking multiple times
+    const index = post.likes.findIndex((id) => id === String(req.userId));
+    if(index === -1) {
+        // Like post
+        post.likes.push(req.userId);
+    } else {
+        // Dislike post
+        post.likes = post.likes.filter((id) => id !== String(req.userId));
+    }
+
+    // Update post
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
 
     res.json(updatedPost);
 };

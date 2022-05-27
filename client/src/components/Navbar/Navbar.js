@@ -7,6 +7,7 @@ import memoriesLogo from '../../images/memories-Logo.png'
 import memoriesText from '../../images/memories-Text.png'
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import * as actionType from '../../constants/actionTypes';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -17,10 +18,10 @@ const Navbar = () => {
 
   const logout = () => {
     // Will update auth reducer to remove profile from localStorage
-    dispatch({ type: 'LOGOUT' })
+    dispatch({ type: actionType.LOGOUT })
 
     // Redirect back to home page
-    history.push("/");
+    history.push("/auth");
 
     // Sets user back to null because of logout
     setUser(null);

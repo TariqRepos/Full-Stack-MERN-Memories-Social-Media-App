@@ -33,18 +33,14 @@ const Post = ({ post, setCurrentId }) => {
     const openPost = () => history.push(`/posts/${post._id}`);
 
     return (
-        <Card className={classes.card} raised elevation={6}>
+        <Card className={classes.card} raised elevation={6}>    
             <ButtonBase className={classes.cardAction} onClick={openPost}>
                 <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
                 <div className={classes.overlay}>
                     <Typography variant="h6">{post.name}</Typography>
                     <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
                 </div>
-                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-                    <div className={classes.overlay2}>
-                        <Button style={{color: "white"}} size="small" onClick={() => setCurrentId(post._id)}> <MoreHorizIcons fontSize="medium" /> </Button>
-                    </div>
-                )}
+                
                 <div className={classes.details}>
                     <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                 </div>
@@ -53,6 +49,22 @@ const Post = ({ post, setCurrentId }) => {
                     <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
                 </CardContent>
             </ButtonBase>
+            {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+                <CardActions className={classes.cardActions}>
+                    <div className={classes.overlay2} name="edit">
+                        <Button 
+                            style={{color: "white"}} 
+                            size="small" 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCurrentId(post._id);
+                            }}
+                        >
+                            <MoreHorizIcons fontSize="medium" /> 
+                        </Button>
+                    </div>
+                </CardActions>
+            )}
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() => { dispatch(likePost(post._id)) }}>
                     <Likes />

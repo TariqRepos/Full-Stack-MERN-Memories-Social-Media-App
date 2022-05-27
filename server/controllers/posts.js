@@ -4,16 +4,38 @@ import mongoose from "mongoose";
 import PostMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
+    const { page } = req.query;
     try {
+        const LIMIT = 8; // # of posts per page
+        const startIndex = (Number(page) - 1) * LIMIT; // Get start index of past on every page
+        const total = await PostMessage.countDocuments({}); // Total # of posts
+
+        const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
         // Access to db takes time, so needs to be defined as an async action
         const postMessages = await PostMessage.find();
 
-        res.status(200).json(postMessages);
+        res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
 
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 };
+
+export const getPostsBySearch = async (req, res) => {
+    const { searchQuery, tags } = req.query;
+
+    try {
+        // Use Regex for easier searching in mongodb and i param to ignore case
+        const title = new RegExp(searchQuery, 'i');
+
+        // Search on db, searaching for title or tags, and each tag in tags
+        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(",") } } ]});
+
+        res.json({ data: posts });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
 
 export const createPost = async (req, res) => {
     const post  = req.body;

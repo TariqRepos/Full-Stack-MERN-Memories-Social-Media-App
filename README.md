@@ -1,28 +1,5 @@
 # Full-Stack MERN Memories Social Media App
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="##Description">Description</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
 ## Description 
 
 Memories is a fully responsive full-stack social media application that is built on the MERN stack. The MERN stack includes:
@@ -36,7 +13,7 @@ The supports both email and Google Authentication, pagination, search and filter
 ## Hompage
 When initially starting or opening the application, the user will be presented with the homepage:
 
-![](Readme_images/homepage_not_signed_in.png)
+![](/Readme_images/homepage_not_signed_in.png)
 
 From here, the user has access to alot of options, such as:
 - Searching the posts by title or tags

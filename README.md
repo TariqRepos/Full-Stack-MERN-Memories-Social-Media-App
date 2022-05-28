@@ -13,7 +13,7 @@ The supports both email and Google Authentication, pagination, search and filter
 ## Hompage
 When initially starting or opening the application, the user will be presented with the homepage:
 
-![](Readme_images/homepage_not_signed_in.PNG)
+![homepage_not_signed_in](https://user-images.githubusercontent.com/104251502/170841098-0db779a3-568d-42f3-98ea-0499b3c561d9.PNG)
 
 From here, the user has access to alot of options, such as:
 - Searching the posts by title or tags
@@ -27,7 +27,7 @@ Once signed in, the user will have options to interact with the applicaiton like
 - Editing and Deleting posts that the user has created (See Posts section)
 - Writing comments on sepcific posts (See Post Details section)
 
-![](Readme_images/homepage_signed_in.PNG)
+![homepage_signed_in](https://user-images.githubusercontent.com/104251502/170841119-d480b0d5-49a5-456e-808d-b1efbea2cb67.PNG)
 
 post details signed in pic
 search and great pic
@@ -36,11 +36,11 @@ search and great pic
 
 Once the user clicks on the "SIGN IN" button the top right, there will be a from fill up to sign into an account:
 
-![](Readme_images/sign_in.PNG)
+![sign_in](https://user-images.githubusercontent.com/104251502/170841127-c661e7aa-8f5e-4382-9a4e-7723ccbfe41d.PNG)
 
 The user can login in using either their email and password or with Google Sign In. Or if the user does not have an account already, they can click the sign up option on the bottom right corner of the form and will be presented with a sign up form.
 
-![](Readme_images/sign_up.PNG)
+![sign_up](https://user-images.githubusercontent.com/104251502/170841130-4792541e-b277-4640-b847-2e5e1c11f3bd.PNG)
 
 Once logged in the, the user will be redirected back to the homepage with their name and profile avator on the navigation bar.
 
@@ -48,13 +48,13 @@ Once logged in the, the user will be redirected back to the homepage with their 
 
 Now back on the home page, initially if the user is not signed in, they cannot create, like, edit, comment, or delete the posts. When they are signed in, the user will then be able to create posts, like and comment on all posts, and only edit and delete their own posts.
 
-![](Readme_images/posts.PNG)
+![posts](https://user-images.githubusercontent.com/104251502/170841133-d381930c-cf3c-4865-bbe8-c2d0fdab5ef4.PNG)
 
 ## Post Details
 
 The user can click on specific posts to be directed to a post details page where the can get more information from the post, add comments, and see recommended posts.
 
-![](Readme_images/post_details.PNG)
+![post_details](https://user-images.githubusercontent.com/104251502/170841139-821bb9c7-1023-4513-b103-db0892f23a76.PNG)
 
 ## Credits
 

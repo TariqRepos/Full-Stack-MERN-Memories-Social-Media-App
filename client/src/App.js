@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Container maxidth="xl">
+      <Container maxWidth="xl">
         <Navbar />
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/posts" />} />
@@ -25,6 +25,5 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
 
 export default App;
